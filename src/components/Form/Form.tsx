@@ -30,6 +30,8 @@ export const Form = ({fetchWeather}: FormProps) => {
     if(Object.values(search).includes('')){
       setAlert('Todos los campos son obligatorios')
       return
+    }else{
+      setAlert('')
     }
     fetchWeather(search)
   }
@@ -43,7 +45,7 @@ export const Form = ({fetchWeather}: FormProps) => {
         alert && ( <Alert>{alert}</Alert> )
       }
       <div className={styles.field}>
-        <label htmlFor="city">Ciudad:</label>
+        <label htmlFor="city" className={styles.label}>Ciudad:</label>
         <input 
           id='city'
           type="text"
@@ -54,7 +56,7 @@ export const Form = ({fetchWeather}: FormProps) => {
         />
       </div>
       <div className={styles.field}>
-        <label htmlFor="country">País:</label>
+        <label htmlFor="country" className={styles.label}>País:</label>
         <select 
           id='country'
           name='country'

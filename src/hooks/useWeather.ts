@@ -13,28 +13,43 @@ const Weather = z.object({
 })
 export type Weather = z.infer<typeof Weather>
 
+const initialState = {
+  name: '',
+  main: {
+    temp: 0,
+    temp_max: 0,
+    temp_min: 0
+  }
+}
+
 export const useWeather = () => {
 
-  const [weather, setWeather] = useState<Weather>({
-    name: '',
-    main: {
-      temp: 0,
-      temp_max: 0,
-      temp_min: 0,
-    }
-  })
+  const [weather, setWeather] = useState<Weather>(initialState)
+  const [isLoading, setIsLoading] = useState(false)
+  const [notFound, setNotFound] = useState(false)
 
   const fetchWeather = async(search: SearchType) =>{
     
     console.log('consultando...')
     const appId = import.meta.env.VITE_API_KEY;
 
+    setIsLoading(true)
+    setWeather(initialState)
+    setNotFound(false)
+
     try{
-      const geoUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${search.city},${search.country}&appid=${appId}`
+      const geoUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${search.city},${search.country}&appid=${appId}`
       const {data} = await axios(geoUrl)
       
+      if(!data[0]){
+        setNotFound(true)
+        return
+      }
+
       const lat = data[0].lat
       const lon = data[0].lon
+
+      //comprobar si existe
 
       const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${appId}`
 
@@ -48,6 +63,8 @@ export const useWeather = () => {
 
     }catch(error){
       console.log(error)
+    }finally{
+      setIsLoading(false)
     }
   }
 
@@ -55,6 +72,8 @@ export const useWeather = () => {
  
   return {
     weather,
+    isLoading,
+    notFound,
     fetchWeather,
     hasWeatherData
   }
