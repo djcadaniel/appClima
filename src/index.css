@@ -13,7 +13,7 @@ html{
 body{
   font-family: 'Outfit', sans-serif;
   background-image: url('/climate.jpg');
-  height: 90vh;
+  height: 96.5vh;
   background-size: cover;
   background-repeat: no-repeat;
   color: var(--white);

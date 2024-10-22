@@ -9,6 +9,9 @@ export type Country = {
 }
 
 export type Weather = {
+  sys: {
+    country: ''
+  }
   name: string
   main: {
     temp: number

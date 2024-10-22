@@ -4,6 +4,9 @@ import { z } from 'zod';
 import { useMemo, useState } from 'react';
 
 const Weather = z.object({
+  sys: z.object({
+    country: z.string(),
+  }),
   name: z.string(),
   main: z.object({
     temp: z.number(),
@@ -14,6 +17,9 @@ const Weather = z.object({
 export type Weather = z.infer<typeof Weather>
 
 const initialState = {
+  sys: {
+    country: ''
+  },
   name: '',
   main: {
     temp: 0,
@@ -27,6 +33,7 @@ export const useWeather = () => {
   const [weather, setWeather] = useState<Weather>(initialState)
   const [isLoading, setIsLoading] = useState(false)
   const [notFound, setNotFound] = useState(false)
+  const [stateCounty, setstateCounty] = useState('')
 
   const fetchWeather = async(search: SearchType) =>{
     
@@ -48,14 +55,15 @@ export const useWeather = () => {
 
       const lat = data[0].lat
       const lon = data[0].lon
-
-      //comprobar si existe
+      const state = data[0].state
+      setstateCounty(state)
 
       const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${appId}`
-
+      // console.log(weatherUrl)
       const {data: weatherResult} = await axios(weatherUrl)
+      // console.log(weatherResult)
       const result = Weather.safeParse(weatherResult)
-      console.log(result)
+      // console.log(result)
 
       if(result.success){
         setWeather(result.data)
@@ -75,6 +83,7 @@ export const useWeather = () => {
     isLoading,
     notFound,
     fetchWeather,
-    hasWeatherData
+    hasWeatherData,
+    stateCounty
   }
 }

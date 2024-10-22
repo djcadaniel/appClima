@@ -9,7 +9,8 @@
   align-items: center;
 }
 .container2__description{
-  padding: 10rem;
+  position: relative;
+  padding: 8rem;
   border-radius: 1rem;
   background-color: var(--white);
 }
@@ -28,4 +29,30 @@
 }
 .temperatures span{
   font-weight: 400;
+}
+.country{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  color: white;
+  background-color: #000;
+}
+
+@media (max-width:768px){
+  .container2__description{
+    padding: 4rem;
+  }
+  .country{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 0.3rem 0.8rem;
+    border-radius: 10px;
+    font-size: 1.2rem;
+  }
+  .current{
+    font-size: 4rem;
+  }
 }
