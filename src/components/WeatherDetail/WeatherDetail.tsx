@@ -1,6 +1,6 @@
 import { Weather } from "../../hooks/useWeather"
 import { formatTemperature } from "../../utils"
-import styles from './WeatherDetail.module.css'
+import styles from './weatherDetail.module.css'
 
 type WeatherDetailProps = {
   weather: Weather
