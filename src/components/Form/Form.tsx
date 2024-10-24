@@ -45,17 +45,6 @@ export const Form = ({fetchWeather}: FormProps) => {
         alert && ( <Alert>{alert}</Alert> )
       }
       <div className={styles.field}>
-        <label htmlFor="city" className={styles.label}>Ciudad:</label>
-        <input 
-          id='city'
-          type="text"
-          name='city'
-          placeholder='Ciudad'
-          value={search.city}
-          onChange={handleChange}
-        />
-      </div>
-      <div className={styles.field}>
         <label htmlFor="country" className={styles.label}>País:</label>
         <select 
           id='country'
@@ -75,6 +64,17 @@ export const Form = ({fetchWeather}: FormProps) => {
             ))
           }
         </select>
+      </div>
+      <div className={styles.field}>
+        <label htmlFor="city" className={styles.label}>Ciudad:</label>
+        <input 
+          id='city'
+          type="text"
+          name='city'
+          placeholder='Ciudad'
+          value={search.city}
+          onChange={handleChange}
+        />
       </div>
       <input className={styles.submit} type="submit" value='Consultar clima'/>
     </form>

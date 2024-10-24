@@ -12,11 +12,8 @@ html{
 }
 body{
   font-family: 'Outfit', sans-serif;
-  background-image: url('/climate.jpg');
   height: 96.5vh;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+  
   color: var(--white);
   font-style: 2rem;
   font-size: 1.6rem;

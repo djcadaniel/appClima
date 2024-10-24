@@ -1,11 +1,22 @@
 .appClima{
   position: relative;
   height: 100vh;
+  /* background-image: url('/climate.jpg'); */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .lluvia{
   width: 100%;
   height: 100%;
   background-color: rgba(0,0,0,.5);
+  z-index: 10 !important;
+  animation: vapor 10s linear infinite;
+}
+.sol{
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.1);
   z-index: 10 !important;
   animation: vapor 10s linear infinite;
 }
