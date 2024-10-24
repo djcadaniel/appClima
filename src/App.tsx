@@ -40,12 +40,13 @@ function App() {
           <div className='container__data'>
             { isLoading && <Spinner /> }
             { hasWeatherData && <WeatherDetail weather = {weather} state={stateCounty} /> }
+            { notFound && (
+                <Alert>
+                  <img src={notMapa} className='ciudadFail' alt="ciudad no encontrada" />
+                </Alert>
+              
+            )}
           </div>
-          { notFound && (
-            <Alert>
-              <img src={notMapa} className='ciudadFail' alt="ciudad no encontrada" />
-            </Alert>
-          )}
         </div>
         <footer>
           <span>Hecho por djcadaniel@2024</span>
